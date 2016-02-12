@@ -4092,7 +4092,13 @@
 	
 		/* Finally set the width's of the header and footer tables */
 		var iOuterWidth = table.outerWidth();
-		divHeaderTable[0].style.width = _fnStringToCss( iOuterWidth );
+
+		// ØS: wrapped in check as it might not exist (in our forked Scroller)
+		if (divHeaderTable[0]) {
+			// TODO check if this '- barwidth' has any effect (it was added by us)
+			divHeaderTable[0].style.width = _fnStringToCss( iOuterWidth - barWidth );
+		}
+
 		divHeaderInnerStyle.width = _fnStringToCss( iOuterWidth );
 	
 		// Figure out if there are scrollbar present - if so then we need a the header and footer to
